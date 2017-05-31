@@ -48,7 +48,8 @@ db.once("open", function() {
 //*********** routes *************
 
 //route to get all saved articles from the database
-app.get("api/saved", function(req, res) {
+app.get("/api/saved", function(req, res) {
+    console.log("get route is working");
     Article.find({}).exec(function(error, doc) {
         if (error) {
             console.log(error);
@@ -61,8 +62,9 @@ app.get("api/saved", function(req, res) {
 });
 
 //post route to save articles to database
-app.post("api/save", function(req,res) {
-    console.log("req.body: " + JSON.stringify(req.body));
+app.post("/api/saved", function(req,res) {
+    console.log("post save is working");
+    console.log("req.body: " + JSON.stringify(req));
     var newArticle = new Article(req.body);
 
     //save the new article in the database
@@ -77,12 +79,19 @@ app.post("api/save", function(req,res) {
 });
 
 //delete route to delete articles from the database
-app.delete("api/save", function(req,res) {
+app.delete("/api/saved", function(req,res) {
     console.log("delete route is working");
     console.log("req.body: " + req.body);
     Article.deleteOne({
         title: req.body.title
     }).then(console.log("collection deleted"));
+});
+
+//load the main page
+app.get("/", function(req,res) {
+  //missing the class for this section?
+  console.log("hello");
+    
 });
 
 //listen on PORT
