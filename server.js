@@ -63,7 +63,7 @@ app.get("/api/saved", function(req, res) {
 
 //post route to save articles to database
 app.post("/api/saved", function(req,res) {
-    console.log("post save is working");
+    console.log("api/saved post is working");
     console.log("req.body: " + JSON.stringify(req));
     var newArticle = new Article(req.body);
 
@@ -73,6 +73,7 @@ app.post("/api/saved", function(req,res) {
             res.send(error);
         }
         else {
+            //send doc to browser if successfully saved
            res.send(doc);
         }
     });

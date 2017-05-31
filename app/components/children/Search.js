@@ -8,6 +8,10 @@ var Search = React.createClass({
         return{};
     },
 
+    handleClick: function() {
+         console.log("run-search click is working within component");
+    },
+
     render: function() {          
        return ( 
             <div className="row">
@@ -21,20 +25,20 @@ var Search = React.createClass({
                         {/*create the text box to capture the search term*/}  
                       <div className="form-group">
                         <label htmlFor="searchTerm">Topic</label>
-                        <input type="text" className="form-control" id="searchTerm"></input>
+                        <input type="text" className="form-control" id="search-term"></input>
                       </div> 
                        {/*create the text box to capture the start year*/}
                       <div className="form-group">
                         <label htmlFor="startYear">Start Year</label>
-                        <input type="text" className="form-control" id="startYear"></input>
+                        <input type="text" className="form-control" id="start-year"></input>
                       </div> 
                        {/*create the text box to capture the end year*/}
                       <div className="form-group">
                         <label htmlFor="endYear">End Year</label>
-                        <input type="text" className="form-control" id="endYear"></input>
+                        <input type="text" className="form-control" id="end-year"></input>
                       </div> 
                       <button 
-                      id="searchButton"
+                      id="run-search"
                       className="btn btn-primary"
                       onClick={this.handleClick}
                       >Search</button>
