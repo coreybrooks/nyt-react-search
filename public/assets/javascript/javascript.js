@@ -68,6 +68,9 @@ function runQuery(numArticles, queryURL) {
             articleCounter + "</span><strong> " +
             NYTData.response.docs[i].headline.main + "</strong></h3>"
           );
+        $("#article-well-" + articleCounter)
+         .append("<button class='btn btn-primary saveButton'>Save</button>");
+
 
         // Log the first article's headline to console
         console.log(NYTData.response.docs[i].headline.main);
@@ -83,11 +86,11 @@ function runQuery(numArticles, queryURL) {
       }
 
       // Then display the remaining fields in the HTML (Section Name, Date, URL)
-      $("#articleWell-" + articleCounter)
+      $("#article-well-" + articleCounter)
         .append("<h5>Section: " + NYTData.response.docs[i].section_name + "</h5>");
-      $("#articleWell-" + articleCounter)
+      $("#article-well-" + articleCounter)
         .append("<h5>" + NYTData.response.docs[i].pub_date + "</h5>");
-      $("#articleWell-" + articleCounter)
+      $("#article-well-" + articleCounter)
         .append(
           "<a href='" + NYTData.response.docs[i].web_url + "'>" +
           NYTData.response.docs[i].web_url + "</a>"
@@ -151,4 +154,38 @@ $(document).on("click", "#run-search", function(event) {
 $("#clear-all").on("click", function() {
   articleCounter = 0;
   $("#well-section").empty();
+});
+
+//section for saving articles
+$(document).on("click", ".saveButton", function() {
+  console.log("saveButton is clicked");
+  $.ajax({
+    url: "./../../api/saved",
+    method: "POST"
+  }).done
+});
+
+//section for retreiving saved articles
+$("#get-saved").on("click", function() { 
+  $.ajax({
+     url: "./../../api/saved",
+     method: "GET"
+  }).done(function(savedData) {
+    console.log("saved data from ajax: " + JSON.stringify(savedData));
+    
+
+    for (i=0; i<savedData.length; i++) {
+      console.log("savedData[i].title: " + savedData[i].title);
+      var savedSection = $("<div>");
+      savedSection.addClass("savedSection");
+      savedSection.attr("id", savedData[i].title);
+      $("#saved-well-section").append(savedSection);
+
+      $("#" + savedData[i].title).append("<h4> Title: " + savedData[i].title + "</h4>");
+      $("#" + savedData[i].title).append("<h5> date: " + savedData[i].date + "</h5>");
+      $("#" + savedData[i].title).append("<h5> url: " + savedData[i].url + "</h5>");
+      $("#" + savedData[i].title).append("<button class='btn btn-danger delete-saved'>Delete</button>");
+
+    }
+  });
 });

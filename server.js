@@ -56,7 +56,7 @@ app.get("/api/saved", function(req, res) {
         }
         else {
             console.log(doc);
-            res.render("index", {article: doc});
+            res.json(doc);
         }
     });
 });

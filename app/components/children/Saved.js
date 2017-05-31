@@ -15,7 +15,8 @@ var Saved = React.createClass({
                 </div>
                 {/*this panel will hold the results*/}
                 <div className="panel-body" id="saved-well-section">                  
-                </div>    
+                </div> 
+                <button className="btn btn-primary" id="get-saved">Get Saved</button>   
               </div>
             </div>
           </div>
