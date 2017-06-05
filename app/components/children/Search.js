@@ -5,11 +5,24 @@ var React = require("react");
 var Search = React.createClass({ 
 
     getInitialState: function() {
-        return{};
+        return{
+          searchTerm: "",
+          startYear: "",
+          endYear: ""
+        };
     },
+    handleChange: function (event) {
+      var newState={};
+      newState[event.target.id]=event.target.value;
+      this.setState(newState);
+    },
+    handleSubmit: function(event) {
+      console.log("handleSubmit is working");
+      event.preventDefault();
 
-    handleClick: function() {
-         console.log("run-search click is working within component");
+      //set the parent to have the new terms
+      this.props.setTerms(this.state.searchTerm, this.state.startYear, this.state.endYear);
+      this.setState({searchTerm: "", startYear: "", endYear: ""});
     },
 
     render: function() {          
@@ -21,26 +34,44 @@ var Search = React.createClass({
                     <h3 className="panel-title text-center">Search</h3>
                   </div>
                   <div className="panel-body text-center">
-                    <form role="form">
+                    <form onSubmit={this.handleSubmit}>
                         {/*create the text box to capture the search term*/}  
                       <div className="form-group">
                         <label htmlFor="searchTerm">Topic</label>
-                        <input type="text" className="form-control" id="search-term"></input>
+                        <input 
+                          value={this.state.searchTerm}
+                          type="text" 
+                          className="form-control"
+                          id="searchTerm"
+                          onChange={this.handleChange}
+                          required
+                        />
                       </div> 
                        {/*create the text box to capture the start year*/}
                       <div className="form-group">
                         <label htmlFor="startYear">Start Year</label>
-                        <input type="text" className="form-control" id="start-year"></input>
+                        <input 
+                          value={this.state.startYear}
+                          type="text" 
+                          className="form-control" 
+                          id="startYear"
+                          onChange={this.handleChange}
+                          />
                       </div> 
                        {/*create the text box to capture the end year*/}
                       <div className="form-group">
                         <label htmlFor="endYear">End Year</label>
-                        <input type="text" className="form-control" id="end-year"></input>
+                        <input 
+                          value={this.state.endYear}
+                          type="text" 
+                          className="form-control" 
+                          id="endYear"
+                          onChange={this.handleChange}
+                          />
                       </div> 
                       <button 
-                      id="run-search"
                       className="btn btn-primary"
-                      onClick={this.handleClick}
+                      type="submit"
                       >Search</button>
                     </form>
                   </div>

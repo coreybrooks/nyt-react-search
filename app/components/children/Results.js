@@ -2,9 +2,7 @@ var React = require("react");
 
 //create the Results component
 var Results = React.createClass({
-    getIntialState: function() {
-
-    },
+    
     render: function() {
         return (
           <div className="row">
@@ -14,7 +12,12 @@ var Results = React.createClass({
                   <h3 className="panel-title">Results</h3>
                 </div>
                 {/*this panel will hold the results*/}
-                <div className="panel-body" id="well-section">                  
+                <div className="panel-body" id="well-section"> 
+                    {this.props.results.map(function(search, i) {
+                      return (
+                        <p key={i}>{response.docs[i].headline.main}}</p>
+                      );
+                    })}   
                 </div>    
               </div>
             </div>
