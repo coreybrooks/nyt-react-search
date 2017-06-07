@@ -17,9 +17,12 @@ var PORT = process.env.PORT || 8080;
 
 //use morgan and body-parser with our app
 app.use(logger("dev"));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //handlebars setup
 var exphbs = require("express-handlebars");
@@ -62,9 +65,18 @@ app.get("/api/saved", function(req, res) {
 });
 
 //post route to save articles to database
-app.post("/api/saved", function(req,res) {
+app.post("/api/saved", function(req, res) {
     console.log("api/saved post is working");
-    console.log("req.body: " + JSON.stringify(req));
+    console.log("req.body: " + JSON.stringify(req.body));
+   
+   /* var newData = {
+        title: req.body.headline.main,
+        data: req.body.pub_date,
+        url: req.body.web_url
+    }
+    console.log(JSON.stringify(newData)); */
+    
+    
     var newArticle = new Article(req.body);
 
     //save the new article in the database

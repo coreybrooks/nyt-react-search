@@ -1,7 +1,4 @@
 var React = require("react");
-var helpers = require("./../utils/helpers");
-
-
 
 const Results = (props) => {
   const {web_url, headline, multimedia, byline, section_name, pub_date} = props.data;

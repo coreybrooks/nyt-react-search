@@ -40,13 +40,20 @@ var helper = {
 
   // This function hits our own server to retrieve the record of query results
   getHistory: function() {
-    return axios.get("/api");
+    return axios.get("/api/saved");
   },
 
   // This function posts new searches to our database.
-  saveHistory: function(location) {
+  saveHistory: function(data) {
     console.log("helpers saveHistory is working");
-    return axios.post("/api", { location: location });
+    console.log("helper data: " + data);
+    var newData = {
+        title: data.headline.main,
+        date: data.pub_date,
+        url: data.web_url
+    }
+
+    return axios.post("/api/saved", newData);
   }
 };
 

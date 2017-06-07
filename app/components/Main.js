@@ -35,8 +35,10 @@ var Main = React.createClass({
   },
   saveData: function(data) {
      console.log("saveData click is working");
-     const newData = data;
-     console.log("data: " + JSON.stringify(data));
+     console.log("data: " + (data));
+     helpers.saveHistory(data).then(function() {
+       console.log("saveData then promise triggered");
+     });
   },
   renderResults: function() {
     if (this.state.results === "") {
