@@ -26,7 +26,7 @@ var Main = React.createClass({
           console.log("componentDidUpdate triggered");
           helpers.runQuery(this.state.searchTerm, this.state.startYear, this.state.endYear).then(function(data) {
             console.log("data: " + JSON.stringify(data.data.response.docs[0].headline.main));
-            this.setState({ results: data.data });
+            this.setState({ results: data.data.response.docs});
           }.bind(this));
      }
   },
@@ -42,7 +42,7 @@ var Main = React.createClass({
               <h2>Corey's NYT React Searcher</h2>
             </div>
               <Search setTerms={this.setTerms} />
-              <Results results={this.results} />
+              <Results results={this.state.results} />
               <Saved />
           </div>
       );

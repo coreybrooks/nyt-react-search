@@ -9,8 +9,7 @@ var numResults = 5;
 var helper = {
 
   // This function serves our purpose of running the query to geolocate.
-  runQuery: function(searchTerm, startYear, endYear) {
-   
+  runQuery: function(searchTerm, startYear, endYear) {   
     
     console.log("searchTerm: " + searchTerm);
     console.log("startYear: " + startYear);
@@ -34,7 +33,7 @@ var helper = {
 
 
     return axios.get(queryURL).then(function(response) {
-         console.log("response" + JSON.stringify(response));
+         console.log("response" + response);
          return response;
     });
   },
@@ -45,7 +44,8 @@ var helper = {
   },
 
   // This function posts new searches to our database.
-  postHistory: function(location) {
+  saveHistory: function(location) {
+    console.log("helpers saveHistory is working");
     return axios.post("/api", { location: location });
   }
 };
