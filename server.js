@@ -24,12 +24,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-//handlebars setup
-var exphbs = require("express-handlebars");
-
-app.engine("handlebars", exphbs({ defaultLayout: "main"}));
-app.set("view engine", "handlebars");
-
 //make public a static dir
 app.use(express.static("public"));
 
@@ -89,7 +83,8 @@ app.delete("/api/saved", function(request, respond) {
     console.log("request.body: " + JSON.stringify(request.body));
     Article.deleteOne({
         title: request.body.title
-    }).then(console.log("collection deleted"));
+    }).then(
+    respond.send("article deleted"));
 });
 
 //load the main page

@@ -30,8 +30,8 @@ var Main = React.createClass({
   //go back and create lifecycle events here
   componentDidUpdate: function(prevProps, prevState) {
       console.log("-------------------");
-      console.log("prevProps: " + JSON.stringify(prevProps));
-      console.log("prevState: " + JSON.stringify(prevState));
+      console.log("prevProps: " + prevProps.searchTerm);
+      console.log("prevState: " + prevState.searchTerm);
       if (prevState.searchTerm !== this.state.searchTerm) {
           console.log("componentDidUpdate triggered");
           helpers.runQuery(this.state.searchTerm, this.state.startYear, this.state.endYear).then(function(data) {
@@ -47,14 +47,29 @@ var Main = React.createClass({
      console.log("data: " + (data));
      helpers.saveHistory(data).then(function() {
        console.log("article saved!");
-     });
+       //get new history after new save
+          helpers.getHistory().then(function(res) {
+            console.log(res);
+            if (res !== this.state.history) {
+              console.log("history response: " + res.data);
+              this.setState({history : res.data})
+            }
+          }.bind(this));
+     }.bind(this));
   },
   deleteData: function(data) {
     console.log("deleteData is working");
     console.log("deleteData data: " + JSON.stringify(data));
     helpers.deleteHistory(data).then(function() {
       console.log("article deleted!");
-    });
+         helpers.getHistory().then(function(res) {
+            console.log(res);
+            if (res !== this.state.history) {
+              console.log("history response: " + JSON.stringify(res.data));
+              this.setState({history : res.data})
+            }
+          }.bind(this));
+    }.bind(this));
   },
   renderResults: function() {
     if (this.state.results === "") {

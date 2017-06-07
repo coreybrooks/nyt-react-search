@@ -47,6 +47,7 @@ var helper = {
   saveHistory: function(data) {
     console.log("helpers saveHistory is working");
     console.log("helper data: " + data);
+
     var newData = {
         title: data.headline.main,
         date: data.pub_date,
@@ -56,13 +57,13 @@ var helper = {
   },
   deleteHistory: function(data) {
     console.log("helpers deleteHistory is working");
-    console.log("helper data: " + JSON.stringify(data));
+    console.log("helper data: " + data);
         var deleteData = {
         title: data.title,
         date: data.date,
         url: data.url,
     }
-        console.log("var deleteData: " + JSON.stringify(deleteData));
+        console.log("var deleteData: " + deleteData);
 
     return axios.delete("/api/saved", {
       data: deleteData

@@ -15,7 +15,6 @@ var ArticleSchema = new Schema({
     //data is a required date
     date: {
         type: Date,
-        required: true
     },
     //url is a required string
     url: {

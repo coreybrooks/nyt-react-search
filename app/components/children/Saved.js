@@ -15,7 +15,7 @@ const Saved = (props) => {
               <p>{byline ? byline.original : ""}</p>
               <p>Section: {section_name}</p>*/}
               {/*ternary expression to display date if one is available*/}
-              <p>Date: {date.length ? date.substring(0,10): "N/A"}</p>
+              <p>Date: {date ? date.substring(0,10): "N/A"}</p>
               <button 
                 className="btn btn-danger deleteButton"
                 onClick={() => handleClick(props.data)}>Delete

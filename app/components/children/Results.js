@@ -13,8 +13,8 @@ const Results = (props) => {
                     //ternary expression to display the image if one is available or "sorry" message if not
                     src={multimedia.length ? "https://nytimes.com/" + multimedia[0].url: "http://www.kalahandi.info/wp-content/uploads/2016/05/sorry-image-not-available.png"} 
                   />
-                  <p>{byline ? byline.original : ""}</p>                  
-                  <p>Section: {section_name}</p>
+                  <p>{byline && byline.original.length>1 ? byline.original : ""}</p>                  
+                  <p>Section: {section_name ? section_name: "N/A"}</p>
                   {/*ternary expression to display date if one is available*/}
                   <p>Date: {pub_date ? pub_date.substring(0,10): "N/A"}</p>
                   <button 
