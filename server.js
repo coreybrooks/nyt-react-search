@@ -67,15 +67,7 @@ app.get("/api/saved", function(req, res) {
 //post route to save articles to database
 app.post("/api/saved", function(req, res) {
     console.log("api/saved post is working");
-    console.log("req.body: " + JSON.stringify(req.body));
-   
-   /* var newData = {
-        title: req.body.headline.main,
-        data: req.body.pub_date,
-        url: req.body.web_url
-    }
-    console.log(JSON.stringify(newData)); */
-    
+    console.log("req.body: " + JSON.stringify(req.body)); 
     
     var newArticle = new Article(req.body);
 
@@ -92,11 +84,11 @@ app.post("/api/saved", function(req, res) {
 });
 
 //delete route to delete articles from the database
-app.delete("/api/saved", function(req,res) {
-    console.log("delete route is working");
-    console.log("req.body: " + req.body);
+app.delete("/api/saved", function(request, respond) {
+    console.log("/api/saved delete route is working");
+    console.log("request.body: " + JSON.stringify(request.body));
     Article.deleteOne({
-        title: req.body.title
+        title: request.body.title
     }).then(console.log("collection deleted"));
 });
 

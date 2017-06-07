@@ -14,8 +14,18 @@ var Main = React.createClass({
 
    //set initial state of any variables
    getInitialState: function() {
-     return { searchTerm: "", startYear: "", endYear: "", results: [] };
+     return { searchTerm: "", startYear: "", endYear: "", results: [], history: [] };
 
+   },
+   // get the latest history as soon as the page loads
+   componentDidMount: function() {
+     helpers.getHistory().then(function(res) {
+       console.log(res);
+       if (res !== this.state.history) {
+         console.log("history response: " + JSON.stringify(res.data));
+         this.setState({history : res.data})
+       }
+     }.bind(this));
    },
   //go back and create lifecycle events here
   componentDidUpdate: function(prevProps, prevState) {
@@ -25,7 +35,6 @@ var Main = React.createClass({
       if (prevState.searchTerm !== this.state.searchTerm) {
           console.log("componentDidUpdate triggered");
           helpers.runQuery(this.state.searchTerm, this.state.startYear, this.state.endYear).then(function(data) {
-            console.log("data: " + JSON.stringify(data.data.response.docs[0].headline.main));
             this.setState({ results: data.data.response.docs});
           }.bind(this));
      }
@@ -37,8 +46,15 @@ var Main = React.createClass({
      console.log("saveData click is working");
      console.log("data: " + (data));
      helpers.saveHistory(data).then(function() {
-       console.log("saveData then promise triggered");
+       console.log("article saved!");
      });
+  },
+  deleteData: function(data) {
+    console.log("deleteData is working");
+    console.log("deleteData data: " + JSON.stringify(data));
+    helpers.deleteHistory(data).then(function() {
+      console.log("article deleted!");
+    });
   },
   renderResults: function() {
     if (this.state.results === "") {
@@ -54,6 +70,20 @@ var Main = React.createClass({
     );
     }
   },
+  renderHistory: function() {
+    if (this.state.history === []) {
+      return
+    }
+    else {
+      return this.state.history.map(
+        (data) => (
+          <div key={data.title}>
+            <Saved data={data} handleClick={this.deleteData}/>
+          </div>
+        )
+      );
+    }
+  },
 
   //component's render method
   render: function() {
@@ -64,7 +94,8 @@ var Main = React.createClass({
             </div>
              
               <Search setTerms={this.setTerms} />
-
+              
+              {/*section to dynamically create results component*/}
               <div className="row">
                 <div className="col-md-12">
                   <div className="panel panel-default">
@@ -78,7 +109,22 @@ var Main = React.createClass({
                 </div>
               </div>
 
-              <Saved />
+              {/*section to dynamically create saved component*/}
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="panel panel-default">
+                    <div className="panel-heading text-center">
+                      <h3 className="panel-title">Saved</h3>
+                    </div>
+                    {/*this panel will hold the results*/}
+                    <div className="panel-body" id="saved-well-section">   
+                      {this.renderHistory()}               
+                    </div> 
+                  </div>
+                </div>
+              </div>
+
+
           </div>
       );
   }

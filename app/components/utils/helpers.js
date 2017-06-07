@@ -50,11 +50,26 @@ var helper = {
     var newData = {
         title: data.headline.main,
         date: data.pub_date,
-        url: data.web_url
+        url: data.web_url,
     }
-
     return axios.post("/api/saved", newData);
-  }
+  },
+  deleteHistory: function(data) {
+    console.log("helpers deleteHistory is working");
+    console.log("helper data: " + JSON.stringify(data));
+        var deleteData = {
+        title: data.title,
+        date: data.date,
+        url: data.url,
+    }
+        console.log("var deleteData: " + JSON.stringify(deleteData));
+
+    return axios.delete("/api/saved", {
+      data: deleteData
+    });
+    
+    },
+
 };
 
 // We export the API helper
