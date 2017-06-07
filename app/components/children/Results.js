@@ -4,7 +4,15 @@ const Results = (props) => {
   const {web_url, headline, multimedia, byline, section_name, pub_date} = props.data;
   const {handleClick} = props; 
         return (
-              <div>
+            <div>
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="panel panel-default">
+                    <div className="panel-heading text-center">
+                      <h3 className="panel-title">Results</h3>
+                   </div>
+                   <div className="panel panel-body">
+
                   <hr />
                   {/*display headline as link*/}
                   <h4><a href={web_url}><i className="fa fa-newspaper-o" aria-hidden="true"></i> {headline.main}</a><br/></h4>
@@ -21,6 +29,10 @@ const Results = (props) => {
                     className="btn btn-primary saveButton"
                     onClick={() => handleClick(props.data)}>save
                   </button>
+                   </div>
+                 </div>
+                </div>
+              </div>
              </div>
         );
     }

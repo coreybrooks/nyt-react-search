@@ -106,41 +106,9 @@ var Main = React.createClass({
           <div className="container">
             <div className="jumbotron">
               <h2>Corey's NYT React Searcher</h2>
+            </div>            
+                  {this.props.children}
             </div>
-             
-              <Search setTerms={this.setTerms} />
-              
-              {/*section to dynamically create results component*/}
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="panel panel-default">
-                    <div className="panel-heading text-center">
-                      <h3 className="panel-title">Results</h3>
-                   </div>
-                   <div className="panel panel-body">
-                     {this.renderResults()} 
-                   </div>
-                 </div>
-                </div>
-              </div>
-
-              {/*section to dynamically create saved component*/}
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="panel panel-default">
-                    <div className="panel-heading text-center">
-                      <h3 className="panel-title">Saved</h3>
-                    </div>
-                    {/*this panel will hold the results*/}
-                    <div className="panel-body" id="saved-well-section">   
-                      {this.renderHistory()}               
-                    </div> 
-                  </div>
-                </div>
-              </div>
-
-
-          </div>
       );
   }
 });
