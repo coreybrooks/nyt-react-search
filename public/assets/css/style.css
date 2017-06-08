@@ -1,10 +1,14 @@
 body {
-    background-image: url("http://www.planwallpaper.com/static/images/background-wallpapers-32.jpg");
+    background-image: url("http://www.wallpapermi.com/wp-content/uploads/2017/01/a-collection-of-the-most-cool-backgrounds-very-rich-of-colors-throughout-the-stylish-cool-website-background-images-with-regard-to-cozy-1024x640.jpg");
+    background-position: center bottom;
 }
 .container {
+    margin-top: 20px;
+    padding: 10px;
     width: 100%;
     max-width: 800px;
-    border: 2px solid #8A8A8A;
+    border: 2px solid white;
+    border-radius: 10px;
     background-image: url("http://www.planwallpaper.com/static/images/Alien_Ink_2560X1600_Abstract_Background_1.jpg");
 
 }
