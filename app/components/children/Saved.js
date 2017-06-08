@@ -12,7 +12,7 @@ const Saved = (props) => {
                       <h3 className="panel-title">Saved</h3>
                     </div>
                     {/*this panel will hold the results*/}
-                    <div className="panel-body" id="saved-well-section">
+                    <div className="panel-body" id="saved-well-section"> 
                       <hr />
                         <h4><a href={url}><i className="fa fa-newspaper-o" aria-hidden="true"></i> {title}</a><br/></h4>
                         {/*<img
@@ -32,6 +32,7 @@ const Saved = (props) => {
                   </div>
                 </div>
               </div>
+
           </div>         
         );
 }

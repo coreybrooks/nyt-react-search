@@ -15,35 +15,6 @@ var Router = router.Router;
 // https://github.com/ReactTraining/react-router/blob/master/docs/guides/Histories.md#hashhistory
 var hashHistory = router.hashHistory;
 
- var renderResults = function() {
-    if (this.state.results === "") {
-      return
-    }
-    else {
-    return this.state.results.map(
-        (data) => (
-          <div key={data.headline.main} >
-             <Results data={data} handleClick={this.saveData}/>
-          </div>
-        )
-    );
-    }
-  }
-  var renderHistory = function() {
-    if (this.state.history === []) {
-      return
-    }
-    else {
-      return this.state.history.map(
-        (data) => (
-          <div key={data.title}>
-            <Saved data={data} handleClick={this.deleteData}/>
-          </div>
-        )
-      );
-    }
-  }
-
 // Include the IndexRoute (catch-all route)
 var IndexRoute = router.IndexRoute;
 var renderResults = renderResults();
@@ -64,8 +35,8 @@ module.exports = (
     <Route path="/" component={Main}>
 
       {/* If user selects Info or Chat show the appropriate component */}
-      <Route path="results" component={renderResults} />
-      <Route path="saved" component={renderHistory} />
+      <Route path="results" component={Results} />
+      <Route path="saved" component={Saved} />
       <Route path="search" component={Search} />
 
       {/* If user selects any other path... we get the Info Route */}
