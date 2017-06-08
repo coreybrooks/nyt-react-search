@@ -2,7 +2,23 @@ var React = require("react");
 
 const Results = (props) => {
   const {web_url, headline, multimedia, byline, section_name, pub_date} = props.data;
-  const {handleClick} = props; 
+  const {handleClick} = props;
+  
+    renderResults => {
+    if (this.state.results === "") {
+      return
+    }
+    else {
+    return this.state.results.map(
+        (data) => (
+          <div key={data.headline.main} >
+             <Results data={data} handleClick={this.saveData}/>
+          </div>
+        )
+    );
+    }
+  }
+ 
         return (
             <div>
               <div className="row">

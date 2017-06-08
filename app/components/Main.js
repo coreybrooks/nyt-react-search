@@ -71,20 +71,6 @@ var Main = React.createClass({
           }.bind(this));
     }.bind(this));
   },
-  renderResults: function() {
-    if (this.state.results === "") {
-      return
-    }
-    else {
-    return this.state.results.map(
-        (data) => (
-          <div key={data.headline.main} >
-             <Results data={data} handleClick={this.saveData}/>
-          </div>
-        )
-    );
-    }
-  },
   renderHistory: function() {
     if (this.state.history === []) {
       return
