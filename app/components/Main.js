@@ -105,7 +105,7 @@ var Main = React.createClass({
       return (
           <div className="container">
             <div className="jumbotron">
-              <h2>Corey's NYT React Searcher</h2>
+              <h2>Corey's NYT API Searcher | Built with React</h2>
             </div>
              
               <Search setTerms={this.setTerms} />

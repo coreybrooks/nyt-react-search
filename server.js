@@ -28,7 +28,11 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("public"));
 
 //database configuration with mongoose
-mongoose.connect("mongodb://localhost/nytreact");
+if (process.env.MONGODB_URI) {
+    mongoose.connections(process.env.MONGODB_URi);
+} else {
+    mongoose.connect("mongodb://localhost/nytreact");
+}
 
 var db = mongoose.connection;
 
