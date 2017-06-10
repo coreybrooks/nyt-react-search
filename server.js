@@ -29,7 +29,7 @@ app.use(express.static("public"));
 
 //database configuration with mongoose
 if (process.env.MONGODB_URI) {
-    mongoose.connections(process.env.MONGODB_URi);
+    mongoose.connect(process.env.MONGODB_URI);
 } else {
     mongoose.connect("mongodb://localhost/nytreact");
 }
