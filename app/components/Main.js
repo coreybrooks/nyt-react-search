@@ -103,10 +103,28 @@ var Main = React.createClass({
   //component's render method
   render: function() {
       return (
-          <div className="container">
-            <div className="jumbotron">
-              <h2>Corey's NYT API Searcher | Built with React</h2>
+        <div>
+          {/*Header*/} 
+          <div className="navbar navbar-default">
+            <div className="container-fluid">
+                <div className="navbar-header">
+                  <a className="navbar-brand" href="#">Corey's NYT | React Project</a>
+                </div>
+                <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul className="nav navbar-nav navbar-right">
+                      <ul className="social">
+                          <li><a href="https://github.com/coreybrooks"><i className=" fa fa-github"></i></a></li>
+                          <li><a href="https://www.linkedin.com/in/corey-brooks"><i className="fa fa-linkedin"></i></a></li>
+                      </ul>
+                  </ul>
+                </div>
             </div>
+          </div>
+
+            <div className="container">  
+              <div className="jumbotron">
+                <h2>Corey's NYT API Searcher | Built with React</h2>
+              </div>
              
               <Search setTerms={this.setTerms} />
               
@@ -138,9 +156,16 @@ var Main = React.createClass({
                   </div>
                 </div>
               </div>
+            </div>
 
+            {/*Footer*/}
+             <div className="footer navbar navbar-default">
+               <div className="container-fluid">
+                 <p className="text-center"> Copyright © 2017 Corey Brooks</p>
+               </div>
+             </div>
 
-          </div>
+        </div>
       );
   }
 });
