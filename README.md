@@ -5,7 +5,7 @@ This website is a complete MERN Stack application.  The application queries the 
 
 ### Routing
 The following request are routed with Express and Node.js for MongoDB communication.
-* /api/save GET route retrieves the saved documents from the articles collection in MongoDB using Mongoose.  The saved documents are returned the Main compent where they are dynamically rendered into the Results component.
+* /api/save GET route retrieves the saved documents from the articles collection in MongoDB using Mongoose.  The saved documents are returned the Main component where they are dynamically rendered into the Results component.
 * /api/save POST route saves the selected article into the articles collection in MongoDB when the save button is clicked, which is then rendered into the Saved component.
 * /api/save DELETE route deletes the selected article from the articles collection when the delete button is clicked.
 
